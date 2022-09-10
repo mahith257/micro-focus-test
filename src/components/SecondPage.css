@@ -1,0 +1,21 @@
+.second-page {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100vh;
+    padding: 10px;
+}
+
+.content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.back-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}

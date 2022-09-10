@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import FirstPage from './components/FirstPage';
+import SecondPage from './components/SecondPage';
 
 function App() {
+  const [border, setBorder] = useState('')
+  const [center, setCenter] = useState(false)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div>
+        <Routes>
+          <Route exact path='/' element={<FirstPage border={border} center={center} />} />
+          <Route path='/second' element={<SecondPage setBorder={setBorder} setCenter={setCenter} />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

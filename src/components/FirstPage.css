@@ -1,0 +1,86 @@
+.App {
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    display: flex;
+    gap: 10px;
+    color: white;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 60px;
+  }
+  
+  .escape {
+    margin-left: auto;
+    color: yellow;
+  }
+  
+  .footer {
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    position: relative;
+    top: 60px;
+    height: calc(100vh - 120px);
+    background-color: lightgray;
+  }
+  
+  .display-area {
+    position: absolute;
+    background-color: gray;
+    height: 400px;
+    width: 400px;
+    cursor: move;
+  }
+  
+  .top-left {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-weight: bold;
+  }
+  
+  .bottom-right{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: white;
+  }
+  
+  .time {
+    font-size: 24px;
+    margin-left: 10px;
+  }
+  
+  .center-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .lower-right-display {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  
+  .goto {
+    cursor: pointer;
+  }
