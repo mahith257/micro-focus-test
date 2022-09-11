@@ -19,6 +19,7 @@ export default function FirstPage({ border, center }) {
         if(center){
             document.querySelector('input[type=radio][id=center]').checked = true
             setPosition('Center')
+            setText('Center')
         }
         let interval = setInterval(() => {
         setCurrent((new Date()).getHours() + ':' + (new Date()).getMinutes() + ':' + (new Date()).getSeconds())
@@ -29,32 +30,27 @@ export default function FirstPage({ border, center }) {
         }
     }, [border, center])
 
-    useEffect(() => {
-        window.addEventListener('keydown', function(e){
+    const handleKeyDown = (e) => {
         if(e.key === "Escape"){
-            this.document.querySelector('#display-area').style.display = 'none'
+            document.getElementById('display-area').style.display = 'none'
         }
         if(e.key === "Enter"){
-            this.document.querySelector('#display-area').style.display = 'block'
+            document.getElementById('display-area').style.display = 'block'
         }
-        })
+    }
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyDown)
 
         return () => {
-        window.removeEventListener('keydown', function(e){
-            if(e.key === "Escape"){
-                this.document.querySelector('#display-area').style.display = 'none'
-            }
-            if(e.key === "Enter"){
-                this.document.querySelector('#display-area').style.display = 'block'
-            }
-        })
+        window.removeEventListener('keydown', handleKeyDown)
         }
     }, [])
 
     const handleChange = (e) => {
-        // var rect = document.getElementById('display-area').getBoundingClientRect();
-        // console.log(rect)
-        document.getElementById('display-area').style.transform = 'translate(0px,0px)'
+        if(document.getElementById('display-area')){
+            document.getElementById('display-area').style.transform = ''
+        }
         setPosition(e.target.value)
         setText(e.target.value)
         // if(document.getElementById('display-area').className.includes("react-draggable-dragged")){
@@ -88,10 +84,10 @@ export default function FirstPage({ border, center }) {
             </div>
             <div id='container' className={`container ${position === "Center" && text === "Center" ? 'center-display' : ''}`}>
                 <Draggable bounds='parent' nodeRef={nodeRef} onStop={handleDragEnd} onStart={handleStart} >
-                <div id='display-area' ref={nodeRef} className={`display-area ${position === "Lower Right" && text === "Lower Right" ? 'lower-right-display' : ''}`}>
-                    <p className='top-left'>{text}</p>
-                    <p className='bottom-right'>Drag me around...</p>
-                </div>
+                    <div id='display-area' ref={nodeRef} className={`display-area ${position === "Lower Right" && text === "Lower Right" ? 'lower-right-display' : ''}`}>
+                        <p className='top-left'>{text}</p>
+                        <p className='bottom-right'>Drag me around...</p>
+                    </div>
                 </Draggable>
             </div>
             <div className='footer'>
